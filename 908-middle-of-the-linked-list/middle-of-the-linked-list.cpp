@@ -10,18 +10,13 @@
  */
 class Solution {
 public:
-    ListNode* middleNode(ListNode* head) {
-        ListNode* temp = head->next;
-        ListNode* mid = head;
-        while(temp != NULL){
-           mid = mid->next;
-           if(temp->next == NULL){
-              break;
-           }
-           temp = temp->next->next;
+       ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head, *fast=head;
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        return mid;
 
-
+        return slow;
     }
 };
