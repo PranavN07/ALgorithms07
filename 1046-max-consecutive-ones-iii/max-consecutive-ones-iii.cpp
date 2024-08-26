@@ -6,13 +6,9 @@ public:
         int right=0,left=0;
         int n=nums.size();
         while(right<n){
-            if(nums[right]==0){
-                zero++;
-            }
+            zero += (nums[right]==0);
             while(zero>k){
-                if(nums[left]==0){
-                    zero--;
-                }
+                zero -= (nums[left]==0);
                 left++;
             }
             len  = max(right-left+1,len);
