@@ -1,30 +1,23 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        int r=0,l=0;
+        vector<int> np(256,-1);
+        int sum=0;
+        int len = 0;
+        int maxlen=0;
         int n = s.size();
-        if(n<2){return n;}
-        int left=0;
-        int right = 0;
-        int maxlen = 0;
-        unordered_set<int> np;
-        while(right != s.size()){
-            if(np.find(s[right])==np.end()){
-                maxlen = max((right-left+1),maxlen);
-                np.insert(s[right]);
-                right++;
-            }
-            else{
-                //here is the twist to aceess all the possible cases we only remove the cas e
-                np.erase(s[left++]);
-                
-            }
-            
+        while(r<n){
+            if(np[s[r]] != -1){
+                if(np[s[r]]>=l){
+                    l = np[s[r]]+1;
+                }
+            }               
+            len  = r-l+1;
+            maxlen = max(len,maxlen);
+            np[s[r]] = r;
+            r++;
         }
         return maxlen;
-
-
-
-
-        
     }
 };
