@@ -1,17 +1,21 @@
 class Solution {
 public:
-    bool isDistinct(vector<string> &arr, int index){
-        return count(arr.begin(),arr.end(),arr[index])==1;
-    }
     string kthDistinct(vector<string>& arr, int k) {
-        int distinctC = 0;
+        unordered_map<string,int> np;
         for(int i=0;i<arr.size();i++){
-            if(isDistinct(arr,i)){
-                distinctC++;
-                if(distinctC == k){
+            np[arr[i]]++;
+        }
+        int i=0;
+        int count = 0;
+        while(i<arr.size()){
+            if(np[arr[i]]==1){
+                count++;
+                if(count == k){
                     return arr[i];
                 }
+
             }
+           i++;
         }
         return "";
     }
