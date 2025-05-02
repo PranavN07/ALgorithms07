@@ -8,13 +8,12 @@ public:
 
         string res;
 
-        for (const auto& [value, symbol] : valueSymbols) {
-            if (num == 0)
-                break;
+        for(int i=0;i<valueSymbols.size();i++){
+            if(num == 0)break;
 
-            while (num >= value) {
-                res += symbol;
-                num -= value;
+            while(num >= valueSymbols[i].first){
+                num -= valueSymbols[i].first;
+                res += valueSymbols[i].second;
             }
         }
 
