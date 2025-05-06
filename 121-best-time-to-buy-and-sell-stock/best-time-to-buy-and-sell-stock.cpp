@@ -1,23 +1,14 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& pri) {
-        int n=pri.size();
-        stack<int>st;
-        int maxi=0;
-        for(int i=0; i<n; i++){
-            if(st.empty()){
-                st.push(pri[i]);
-            }
-            else{
-                if(st.top()>pri[i]){
-                    st.pop();
-                    st.push(pri[i]);
-                }
-                else{
-                    maxi=max(maxi, pri[i]-st.top());
-                }
-            }
+    int maxProfit(vector<int>& prices) {
+        vector<int> ans;
+        int mini = prices[0];
+        for(int i=0;i<prices.size();i++){
+            mini  = min(mini,prices[i]);
+            ans.push_back(prices[i]-mini);
         }
-        return maxi;
+        sort(ans.begin(),ans.end(),greater<int>());
+
+        return ans[0];
     }
 };
