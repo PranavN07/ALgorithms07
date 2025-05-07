@@ -11,18 +11,19 @@
  */
 class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        if(root == nullptr) return ans; 
-        
-        
-        vector<int> left = inorderTraversal(root->left); 
-        ans.insert(ans.end(), left.begin(), left.end());
-        ans.push_back(root->val); 
-        vector<int> right = inorderTraversal(root->right); 
-        ans.insert(ans.end(), right.begin(), right.end());
+    void helper(TreeNode* node,vector<int> &res){
+        if(!node){
+            return;
+        }
+        helper(node->left,res);
+        res.push_back(node->val);
+        helper(node->right,res);
 
-        return ans; 
+
     }
-    
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        helper(root,res);
+        return res;
+    }
 };
